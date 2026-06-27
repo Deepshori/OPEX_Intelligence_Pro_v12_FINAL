@@ -1,0 +1,17 @@
+{
+  "exclude_categories": ["A"],
+  "included_bill_types": ["Bill", "Bill Credit"],
+  "included_journal_categories": ["E"],
+  "journal_exclude_ae_journal": ["Accrual", "Reversal"],
+  "lo_po_ignore_accounts": ["E1940", "E1941", "E1944"],
+  "category_names": {
+    "B": "REPAIRS AND MAINTENANCE",
+    "C": "SPARES",
+    "D": "STORES AND SUPPLIES",
+    "E": "LUBRICATING OIL",
+    "F": "SERVICES",
+    "G": "INSURANCE",
+    "H": "MANAGEMENT FEE"
+  },
+  "top_items_per_category": 5
+}

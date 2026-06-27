@@ -1,0 +1,10 @@
+{
+  "materiality_usd": 2000,
+  "traffic_green_pct": 95,
+  "traffic_yellow_pct": 105,
+  "large_invoice_usd": 20000,
+  "ube_threshold_usd": 5000,
+  "old_accrual_days": 60,
+  "developer": "Deepak Shori",
+  "version": "12.3 Forecast Engine"
+}
