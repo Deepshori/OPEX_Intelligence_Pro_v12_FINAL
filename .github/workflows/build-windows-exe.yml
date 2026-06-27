@@ -1,0 +1,54 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout files
+        uses: actions/checkout@v4
+
+      - name: Show project structure
+        shell: pwsh
+        run: |
+          Write-Host "Repository root files:"
+          Get-ChildItem -Force
+          Write-Host "Engine files:"
+          Get-ChildItem engine -Force
+          Write-Host "Reports files:"
+          Get-ChildItem reports -Force
+          Write-Host "Config files:"
+          Get-ChildItem config -Force
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
+
+      - name: Build executable
+        run: |
+          pyinstaller --onefile --windowed --name "OPEX Intelligence Pro" --version-file version_info.txt --add-data "config;config" main.py
+
+      - name: Zip dist folder
+        shell: pwsh
+        run: |
+          Compress-Archive -Path dist\* -DestinationPath OPEX_Intelligence_Pro_v12_FINAL.zip
+
+      - name: Upload EXE artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: OPEX-Intelligence-Pro-v12-FINAL-Windows-EXE
+          path: OPEX_Intelligence_Pro_v12_FINAL.zip
